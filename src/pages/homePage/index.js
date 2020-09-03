@@ -31,7 +31,7 @@ export default class HomePage extends React.Component{
     }).then(response=>{
       this.setState({data:response.data.results,showErrorMessage:false, totalElements:response.data.count,loading:false,current:page})
     }).catch(err=>{
-      this.setState({showErrorMessage:true})
+      this.setState({showErrorMessage:true,loading:false})
     })
   }
 
@@ -40,6 +40,18 @@ export default class HomePage extends React.Component{
     return (
       <Spin spinning={loading} >
         <div className={styles.homePageContainer}>
+          <div className={styles.description}>
+            <h3>What are Pokémons?</h3>
+            <p>
+              Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using
+              Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a specific species but may
+              take on a variant which makes it differ from other Pokémon of the same species, such as base stats,
+              available abilities and typings.
+            </p>
+          </div>
+        </div>
+        <div className={styles.homePageContainer}>
+
           {
             !showErrorMessage?
             <div className={styles.listContainer}>

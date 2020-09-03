@@ -1,6 +1,13 @@
 .homePageContainer{
   display: flex;
   justify-content: center;
+  .description{
+    text-align: center;
+    width: 70%;
+    @media screen and (max-width: 576px){
+      width: 100%;
+    }
+  }
   .listContainer{
     margin: 20px 10px;
     background: white;
