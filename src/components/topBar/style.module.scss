@@ -1,0 +1,12 @@
+.header{
+  display: flex;
+  background-color: #001529;
+  .element{
+    padding: 20px 30px;
+    color: white;
+
+    &_selected{
+      background: blue;
+    }
+  }
+}

@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import TopBar from "./components/topBar"
+import { Route, BrowserRouter, Redirect } from 'react-router-dom';
+import HomePage from "./pages/homePage"
+import TypesPage from "./pages/typesPage"
+import ViewPokemonPage from "./pages/viewPokemonPage"
 import './App.css';
 
+function Routes() {
+  return(
+    <BrowserRouter>
+      <Route exact={true} path="/" component={HomePage} />
+      <Route exact={true} path="/types" component={TypesPage} />
+      <Route path="/view-pokemon/:id" component={ViewPokemonPage} />
+      {/*if the route not exit we make an auto redirect to the home page*/}
+      <Route render={() => <Redirect to="/" />} />
+    </BrowserRouter>
+  )
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <TopBar/>
+        <Routes />
     </div>
   );
 }
