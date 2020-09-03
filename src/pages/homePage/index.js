@@ -1,5 +1,5 @@
 import React from "react"
-import {Spin} from "antd"
+import {Spin, Pagination} from "antd"
 import axios from "axios"
 import ErrorComponent from "../../components/errorComponent"
 import HomePageItem from "./homePageComponents/item"
@@ -10,16 +10,17 @@ export default class HomePage extends React.Component{
     super(props)
     this.state = {
       loading: true,
-      data: []
+      data: [],
+      current:1
     }
   }
 
   componentDidMount(){
-    this.getPokemons(0)
+    this.getPokemons(1)
   }
 
   getPokemons = (page)=>{
-    const offset = page * 25, limit=25
+    const offset = (page - 1) * 25, limit=25
     axios({
       method:'get',
       url:"pokemon",
@@ -28,14 +29,14 @@ export default class HomePage extends React.Component{
         offset
       }
     }).then(response=>{
-      this.setState({data:response.data.results,showErrorMessage:false})
+      this.setState({data:response.data.results,showErrorMessage:false, totalElements:response.data.count,loading:false,current:page})
     }).catch(err=>{
       this.setState({showErrorMessage:true})
     })
   }
 
   render(){
-    const {loading,data,showErrorMessage} = this.state
+    const {loading,data,showErrorMessage, totalElements,current} = this.state
     return (
       <Spin spinning={loading} >
         <div className={styles.homePageContainer}>
@@ -48,6 +49,7 @@ export default class HomePage extends React.Component{
                 :
                 <div>there's no data, please reload the page</div>
               }
+              <Pagination current={current} pageSize={25} className={styles.pagination} total={totalElements} onChange={this.getPokemons} />
           </div>
         :
           <ErrorComponent />

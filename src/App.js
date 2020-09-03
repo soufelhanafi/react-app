@@ -6,6 +6,7 @@ import HomePage from "./pages/homePage"
 import TypesPage from "./pages/typesPage"
 import ViewPokemonPage from "./pages/viewPokemonPage"
 import './App.css';
+import 'antd/dist/antd.css';
 
 const history = createBrowserHistory()
 
