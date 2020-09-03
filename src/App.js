@@ -11,7 +11,7 @@ const history = createBrowserHistory()
 
 function Routes() {
   return(
-    <>
+    <div className={"mainComponent"}>
       <Switch>
         <Route exact={true} path="/" component={HomePage} />
         <Route exact={true} path="/types" component={TypesPage} />
@@ -19,14 +19,14 @@ function Routes() {
         {/*if the route not exit or when we make a reload we make an auto redirect to the home page*/}
         <Route render={() => <Redirect to="/" />} />
       </Switch>
-    </>
+    </div>
   )
 }
 function App() {
   return (
     <BrowserRouter className="App" history={history}>
         <TopBar/>
-        <Routes />
+        <Routes  />
     </BrowserRouter>
   );
 }
