@@ -4,9 +4,18 @@
   .element{
     padding: 20px 30px;
     color: white;
+    text-decoration: none;
 
     &_selected{
-      background: blue;
+      background: #2b5453;
     }
+  }
+
+  @media screen and (max-width: 576px){
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
