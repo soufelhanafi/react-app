@@ -1,0 +1,13 @@
+.listContainer{
+  margin: 20px 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  width: 70%;
+  @media screen and (max-width: 576px){
+    width: 100%;
+  }
+}
+.pagination{
+  margin: 10px;
+}

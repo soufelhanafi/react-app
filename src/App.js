@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history'; // to create history and detect 
 import HomePage from "./pages/homePage"
 import TypesPage from "./pages/typesPage"
 import ViewPokemonPage from "./pages/viewPokemonPage"
+import PokemonByTypesPage from "./pages/pokemByTypesPage"
 import './App.css';
 import 'antd/dist/antd.css';
 
@@ -17,6 +18,7 @@ function Routes() {
         <Route exact={true} path="/" component={HomePage} />
         <Route exact={true} path="/types" component={TypesPage} />
         <Route exact={true} path="/view-pokemon/:id" component={ViewPokemonPage} />
+        <Route exact={true} path="/types/:name" component={PokemonByTypesPage} />
         {/*if the route not exit or when we make a reload we make an auto redirect to the home page*/}
         <Route render={() => <Redirect to="/" />} />
       </Switch>

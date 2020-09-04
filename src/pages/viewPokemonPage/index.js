@@ -128,7 +128,7 @@ class ViewPokemonPage extends React.Component{
                       <p className={styles.movesTitle}>List of types</p>
                       <small>A list of details showing types this Pokémon has.</small>
                       {pokemon.types.length>0?
-                        pokemon.types.map((type,index)=><div onClick={this.redirectToTypes} key={index}>{(index+1)+") " +type.type.name}</div>)
+                        pokemon.types.map((type,index)=><div key={index}><Link to={"/types/"+type.type.name}>{(index+1)+") " +type.type.name}</Link></div>)
                         :
                         ("Pokemon has no abilities to show")
                       }

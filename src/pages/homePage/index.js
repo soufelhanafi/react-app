@@ -1,8 +1,8 @@
 import React from "react"
-import {Spin, Pagination} from "antd"
+import {Spin,} from "antd"
 import axios from "axios"
 import ErrorComponent from "../../components/errorComponent"
-import HomePageItem from "./homePageComponents/item"
+import ListComponent from "../../components/listComponent"
 import styles from "./style.module.scss"
 
 export default class HomePage extends React.Component{
@@ -52,18 +52,17 @@ export default class HomePage extends React.Component{
           </div>
         </div>
         <div className={styles.homePageContainer}>
-
           {
             !showErrorMessage?
-            <div className={styles.listContainer}>
-              <HomePageItem name={"Pokemon Name"} />
-              {data.length>0 ?
-                data.map((item,index)=><HomePageItem key={item.url} name={item.name} url={item.url} />)
-                :
-                <div>there's no data, please reload the page</div>
-              }
-              <Pagination current={current} pageSize={25} className={styles.pagination} total={totalElements} onChange={this.getPokemons} />
-          </div>
+            <ListComponent
+              data={data}
+              current={current}
+              pageSize={25}
+              totalElements={totalElements}
+              name={"Pokemon Name"}
+              changePagination={this.getPokemons}
+              baseUrl="/view-pokemon/"
+              />
         :
           <ErrorComponent message={"An error occured, please try again by reloading the page"} />
         }
