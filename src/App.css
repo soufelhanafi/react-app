@@ -44,3 +44,8 @@ body{
     margin-bottom: 70px;
   }
 }
+
+a, a:hover, a:visited{
+  color: rgba(0, 0, 0, 0.65) !important;
+  text-decoration: none !important;
+}
