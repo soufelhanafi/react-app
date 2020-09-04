@@ -1,6 +1,6 @@
 import React from "react"
 import {Spin} from "antd"
-import {withRouter,Redirect, Link} from "react-router-dom"
+import {withRouter, Link} from "react-router-dom"
 import axios from "axios"
 import ErrorComponent from "../../components/errorComponent"
 
@@ -64,17 +64,11 @@ class ViewPokemonPage extends React.Component{
       this.setState({loading:false, hideEvolutions:true})
     })
   }
-  redirectToTypes = ()=>{
-    this.setState({redirect:true})
-  }
 
   render(){
     const {name} = this.props.match.params
-    const {loading, pokemon,redirect, showErrorMessage,hideEvolutions} = this.state
+    const {loading, pokemon, showErrorMessage,hideEvolutions} = this.state
 
-    if (redirect) {
-      return <Redirect to="/types" />
-    }
     return (
       <Spin spinning={loading}>
 
