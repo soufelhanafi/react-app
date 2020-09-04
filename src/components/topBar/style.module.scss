@@ -4,12 +4,16 @@
   z-index: 1000;
   .element{
     padding: 20px 30px;
-    color: white;
+    color: white !important;
     text-decoration: none;
 
     &_selected{
       background: #2b5453;
     }
+  }
+  .link{
+    color: white !important;
+    font-size: 15px;
   }
 
   @media screen and (max-width: 576px){

@@ -4,8 +4,9 @@ import styles from "./style.module.scss"
 class ErrorComponent extends React.Component{
 
   render(){
+    const {message} = this.props
     return(
-      <div className={styles.errorContainer}>An error occured, please try again by reloading the page</div>
+      <div className={styles.errorContainer}>{message}</div>
     )
   }
 }

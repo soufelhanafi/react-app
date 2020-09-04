@@ -21,6 +21,7 @@ export default class HomePage extends React.Component{
 
   getPokemons = (page)=>{
     const offset = (page - 1) * 25, limit=25
+    this.setState({loading: true})
     axios({
       method:'get',
       url:"pokemon",
@@ -64,7 +65,7 @@ export default class HomePage extends React.Component{
               <Pagination current={current} pageSize={25} className={styles.pagination} total={totalElements} onChange={this.getPokemons} />
           </div>
         :
-          <ErrorComponent />
+          <ErrorComponent message={"An error occured, please try again by reloading the page"} />
         }
         </div>
       </Spin>

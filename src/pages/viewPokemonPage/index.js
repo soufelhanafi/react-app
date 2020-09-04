@@ -2,6 +2,7 @@ import React from "react"
 import {Spin} from "antd"
 import {withRouter,Redirect, Link} from "react-router-dom"
 import axios from "axios"
+import ErrorComponent from "../../components/errorComponent"
 
 import styles from "./style.module.scss"
 
@@ -34,10 +35,10 @@ class ViewPokemonPage extends React.Component{
       method:'get',
       url:`/pokemon/${id}`,
     }).then(response=>{
-      this.setState({pokemon:response.data})
+      this.setState({pokemon:response.data,showErrorMessage:false})
       this.getEvolutions(response.data.id)
     }).catch(err=>{
-      console.log(err);
+      this.setState({showErrorMessage:true,loading:false})
     })
   }
 
@@ -57,10 +58,10 @@ class ViewPokemonPage extends React.Component{
       method:'get',
       url:`/evolution-chain/${id}`,
     }).then(response=>{
-      this.setState({chain:response.data,loading:false})
-      console.log(this.getEvolutionNames([response.data.chain]));
+      this.setState({chain:response.data,loading:false,showErrorMessage:false, hideEvolutions:true})
+      this.getEvolutionNames([response.data.chain])
     }).catch(err=>{
-      console.log(err);
+      this.setState({loading:false, hideEvolutions:true})
     })
   }
   redirectToTypes = ()=>{
@@ -69,14 +70,16 @@ class ViewPokemonPage extends React.Component{
 
   render(){
     const {name} = this.props.match.params
-    const {loading, pokemon,redirect} = this.state
+    const {loading, pokemon,redirect, showErrorMessage,hideEvolutions} = this.state
 
     if (redirect) {
       return <Redirect to="/types" />
     }
     return (
       <Spin spinning={loading}>
+
         <div className={styles.pokemonViewContainer}>
+        {!showErrorMessage?
             <div className={styles.pokemonViewContent}>
               {pokemon
                 ?
@@ -93,10 +96,11 @@ class ViewPokemonPage extends React.Component{
                     <p className={styles.item}>Weight: {pokemon.weight}</p>
                     <p className={styles.item}>Experience: {pokemon.base_experience}</p>
                   </div>
+                  {hideEvolutions &&
                   <div className={styles.generalInfomrations}>
                     <p className={styles.title}>Evolutions</p>
                     {this.state.names.map((name,index)=>(<p className={styles.item} key={index}><Link  to={"/view-pokemon/"+name} >{name}</Link></p>))}
-                  </div>
+                  </div>}
 
                   <p className={styles.title1}>More informations</p>
                   <div className={styles.moreInformations}>
@@ -135,7 +139,11 @@ class ViewPokemonPage extends React.Component{
                 <div>There's no pokemon with name {name}</div>
               }
             </div>
+        :
+          <ErrorComponent message="An error occured, please back to home page" />
+        }
         </div>
+
       </Spin>
     )
   }
