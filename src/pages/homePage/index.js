@@ -57,7 +57,7 @@ export default class HomePage extends React.Component{
             <ListComponent
               data={data}
               current={current}
-              pageSize={25}
+              pageSize={20}
               totalElements={totalElements}
               name={"Pokemon Name"}
               changePagination={this.getPokemons}

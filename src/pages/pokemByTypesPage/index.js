@@ -49,7 +49,7 @@ export default class TypesPage extends React.Component{
           {
             !showError?
             <ListComponent
-              pageSize={25}
+              pageSize={20}
               onChange={()=>{return}}
               data={pokemons}
               name={"Pokemon Name"}
