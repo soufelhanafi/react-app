@@ -58,7 +58,7 @@ class ViewPokemonPage extends React.Component{
       method:'get',
       url:`/evolution-chain/${id}`,
     }).then(response=>{
-      this.setState({chain:response.data,loading:false,showErrorMessage:false, hideEvolutions:true})
+      this.setState({chain:response.data,loading:false,showErrorMessage:false, hideEvolutions:false})
       this.getEvolutionNames([response.data.chain])
     }).catch(err=>{
       this.setState({loading:false, hideEvolutions:true})
@@ -96,7 +96,7 @@ class ViewPokemonPage extends React.Component{
                     <p className={styles.item}>Weight: {pokemon.weight}</p>
                     <p className={styles.item}>Experience: {pokemon.base_experience}</p>
                   </div>
-                  {hideEvolutions &&
+                  {!hideEvolutions &&
                   <div className={styles.generalInfomrations}>
                     <p className={styles.title}>Evolutions</p>
                     {this.state.names.map((name,index)=>(<p className={styles.item} key={index}><Link  to={"/view-pokemon/"+name} >{name}</Link></p>))}

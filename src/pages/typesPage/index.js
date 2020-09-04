@@ -27,6 +27,15 @@ export default class TypesPage extends React.Component{
     return (
       <Spin spinning={loading}>
         <div className={styles.typesPageContainer}>
+          <div className={styles.description}>
+            <h3>What are Types?</h3>
+            <p>
+              Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against,
+              which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
+            </p>
+          </div>
+        </div>
+        <div className={styles.typesPageContainer}>
           {
             !showError?
             <ListComponent
